@@ -7,571 +7,487 @@
 
     <!-- Bootstrap CSS -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"
       rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css"
     />
 
-    <!-- fontawesome css -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- CSS شخصی -->
-    <style>
-      .trapezoid-box {
-        clip-path: polygon(0 0, 92% 0, 100% 100%, 0% 100%);
-        background-color: #e00;
-      }
-
-      a {
-        text-decoration: none !important;
-      }
-
-      .menu-item {
-        color: #fff;
-      }
-
-      .menu-item:hover {
-        color: #eee !important;
-      }
-
-      .bg-main {
-        background-image: url("./assets/images/bg-main.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
-
-      .more-information {
-        background-color: #e00;
-        color: white;
-        outline: none;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
-
-      .more-information:hover {
-        background-color: #f00;
-      }
-
-      .realation-btn {
-        background-color: #fff;
-        color: #222;
-        outline: none;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
-
-      .realation-btn:hover {
-        background-color: #ccc;
-      }
-
-      /* استایل‌های جدید برای منوی کشویی */
-      .mobile-menu-btn {
-        display: none;
-        background: none;
-        border: none;
-        color: #000;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0.5rem;
-        z-index: 1001;
-      }
-
-      .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100vh;
-        background-color: #333;
-        z-index: 1000;
-        padding: 2rem;
-        overflow-y: auto;
-        transition: right 0.3s ease;
-      }
-
-      .mobile-menu.active {
-        right: 0;
-      }
-
-      .mobile-menu-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid #555;
-        padding-bottom: 1rem;
-      }
-
-      .close-menu {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-
-      .mobile-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .mobile-nav a {
-        color: white;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #555;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .mobile-nav a i {
-        transition: transform 0.3s ease;
-        font-size: 0.8rem;
-      }
-
-      .mobile-nav a.active i {
-        transform: rotate(180deg);
-      }
-
-      .submenu {
-        display: none;
-        padding-right: 1rem;
-        margin-top: 0.5rem;
-      }
-
-      .submenu.active {
-        display: block;
-      }
-
-      .submenu a {
-        font-size: 0.9rem;
-        padding: 0.5rem 0;
-        border-bottom: 1px solid #666;
-      }
-
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-      }
-
-      .overlay.active {
-        display: block;
-      }
-
-      /* استایل‌های دسکتاپ برای زیرمنوها - کاملاً بازنویسی شده */
-      .desktop-nav {
-        position: relative;
-        z-index: 1000;
-      }
-
-      .desktop-nav .nav-items {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .desktop-nav .nav-item {
-        position: relative;
-      }
-
-      .desktop-nav .nav-item.has-submenu:hover .submenu-container {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .desktop-nav .menu-link {
-        color: #fff;
-        padding: 0.5rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        transition: color 0.3s;
-      }
-
-      .desktop-nav .menu-link:hover {
-        color: #eee;
-      }
-
-      .desktop-nav .menu-link i {
-        font-size: 0.7rem;
-        transition: transform 0.3s;
-      }
-
-      .desktop-nav .nav-item.has-submenu:hover .menu-link i {
-        transform: rotate(180deg);
-      }
-
-      .desktop-nav .submenu-container {
-        position: absolute;
-        top: 10%;
-        right: 0;
-        background: #e00;
-        min-width: 200px;
-        border-radius: 0 0 5px 5px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        z-index: 1001;
-      }
-
-      .desktop-nav .submenu {
-        display: block !important;
-        padding: 0.5rem 0;
-        margin: 0;
-      }
-
-      .desktop-nav .submenu a {
-        display: block;
-        padding: 0.6rem 1rem;
-        color: white;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        transition: background 0.3s;
-        white-space: nowrap;
-      }
-
-      .desktop-nav .submenu a:hover {
-        background: rgba(0, 0, 0, 0.1);
-        color: #eee;
-      }
-
-      .desktop-nav .submenu a:last-child {
-        border-bottom: none;
-      }
-
-      /* رسپانسیو */
-      @media (max-width: 992px) {
-        .desktop-nav {
-          display: none !important;
-        }
-
-        .mobile-menu-btn {
-          display: block;
-          position: absolute;
-          left: 15px;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-
-        .trapezoid-box {
-          display: none;
-        }
-
-        header .d-flex.justify-content-between {
-          position: relative;
-          padding-right: 60px !important;
-        }
-
-        .social-icons {
-          padding-left: 0 !important;
-          margin-bottom: 10px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .bg-main h1 {
-          font-size: 1.5rem;
-        }
-
-        .bg-main span {
-          font-size: 1.2rem;
-        }
-
-        .bg-main .d-flex {
-          flex-direction: column;
-          gap: 10px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <div
-        class="d-flex justify-content-between align-items-center ps-5 border position-relative"
-      >
-        <!-- دکمه منوی موبایل -->
-        <button class="mobile-menu-btn">
-          <i class="fas fa-bars"></i>
-        </button>
-
-        <a class="navbar-brand" href="#">
-          <img
-            src="./assets/images/logo.png"
-            alt="لوگو"
-            height="40"
-            class="d-inline-block align-text-top"
-          />
-        </a>
-        <div class="d-flex flex-column align-items-end">
-          <div
-            class="social-icons d-flex align-items-center gap-1 pt-2"
-            style="padding-left: 8rem"
-          >
-            <i
-              style="width: 30px; height: 30px"
-              class="fa-brands fa-telegram fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
-            ></i>
-            <i
-              style="width: 30px; height: 30px"
-              class="fa-brands fa-whatsapp fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
-            ></i>
-            <i
-              style="width: 30px; height: 30px"
-              class="fa-brands fa-instagram fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
-            ></i>
-            <i
-              style="width: 30px; height: 30px"
-              class="fa-brands fa-weixin fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
-            ></i>
+    <!-- Header -->
+    <header style="margin-top: 0px" class="header -mt-lg-3">
+      <div class="">
+        <div class="header-main">
+          <!-- Logo -->
+          <div class="logo ps-lg-5 ps-2">
+            <img src="./assets/images/logo.png" alt="لوگو" height="40" />
           </div>
+          <div class="d-flex flex-column">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn d-lg-none pe-lg-5 pe-2">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-top d-lg-block d-none">
+              <div class="header-social">
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-telegram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-weixin"></i
+                ></a>
+              </div>
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav d-none d-lg-block">
+              <ul class="main-menu">
+                <li><a href="#">خانه</a></li>
 
-          <!-- منوی دسکتاپ کاملاً بازنویسی شده -->
-          <nav
-            style="padding-left: 5rem; transform: translateY(50%)"
-            class="trapezoid-box d-flex align-items-center py-2 ps-5 position-relative desktop-nav"
-          >
-            <ul class="nav-items">
-              <li class="nav-item">
-                <a class="menu-link" href="#">خانه</a>
-              </li>
+                <li class="menu-item-has-children">
+                  <a href="#">
+                    خدمات
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a href="#">نصب و راه‌اندازی</a></li>
+                    <li><a href="#">تعمیر و نگهداری</a></li>
+                    <li><a href="#">پشتیبانی فنی</a></li>
+                  </ul>
+                </li>
 
-              <li class="nav-item has-submenu">
-                <a class="menu-link" href="#">
-                  خدمات
-                  <i class="fas fa-chevron-down"></i>
-                </a>
-                <div class="submenu-container">
-                  <div class="submenu">
-                    <a href="#">نصب و راه‌اندازی</a>
-                    <a href="#">تعمیر و نگهداری</a>
-                    <a href="#">پشتیبانی فنی</a>
-                  </div>
-                </div>
-              </li>
+                <li class="menu-item-has-children">
+                  <a href="#">
+                    محصولات
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a href="#">درب اتوماتیک کشویی</a></li>
+                    <li><a href="#">درب اتوماتیک گردان</a></li>
+                    <li><a href="#">درب اتوماتیک بیمارستانی</a></li>
+                    <li><a href="#">درب اتوماتیک صنعتی</a></li>
+                  </ul>
+                </li>
 
-              <li class="nav-item has-submenu">
-                <a class="menu-link" href="#">
-                  محصولات
-                  <i class="fas fa-chevron-down"></i>
-                </a>
-                <div class="submenu-container">
-                  <div class="submenu">
-                    <a href="#">درب اتوماتیک کشویی</a>
-                    <a href="#">درب اتوماتیک گردان</a>
-                    <a href="#">درب اتوماتیک بیمارستانی</a>
-                    <a href="#">درب اتوماتیک صنعتی</a>
-                  </div>
-                </div>
-              </li>
-
-              <li class="nav-item">
-                <a class="menu-link" href="#">مجله</a>
-              </li>
-              <li class="nav-item">
-                <a class="menu-link" href="#">پروژه‌ها</a>
-              </li>
-              <li class="nav-item">
-                <a class="menu-link" href="#">درباره ما</a>
-              </li>
-              <li class="nav-item">
-                <a class="menu-link" href="#">تماس با ما</a>
-              </li>
-            </ul>
-          </nav>
+                <li><a href="#">مجله</a></li>
+                <li><a href="#">پروژه‌ها</a></li>
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">تماس با ما</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- منوی موبایل -->
-    <div class="overlay"></div>
-    <div class="mobile-menu">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-container">
       <div class="mobile-menu-header">
-        <h5 class="text-white mb-0">منو</h5>
-        <button class="close-menu">
+        <h5>منو</h5>
+        <button class="close-mobile-menu">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      <div class="mobile-nav">
-        <a href="#">خانه</a>
+      <ul class="mobile-menu">
+        <li><a href="#">خانه</a></li>
 
-        <a href="#" class="submenu-toggle"
-          >خدمات <i class="fas fa-chevron-down"></i
-        ></a>
-        <div class="submenu">
-          <a href="#">نصب و راه‌اندازی</a>
-          <a href="#">تعمیر و نگهداری</a>
-          <a href="#">پشتیبانی فنی</a>
-        </div>
+        <li class="menu-item-has-children">
+          <a href="#">
+            خدمات
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="sub-menu">
+            <li><a href="#">نصب و راه‌اندازی</a></li>
+            <li><a href="#">تعمیر و نگهداری</a></li>
+            <li><a href="#">پشتیبانی فنی</a></li>
+          </ul>
+        </li>
 
-        <a href="#" class="submenu-toggle"
-          >محصولات <i class="fas fa-chevron-down"></i
-        ></a>
-        <div class="submenu">
-          <a href="#">درب اتوماتیک کشویی</a>
-          <a href="#">درب اتوماتیک گردان</a>
-          <a href="#">درب اتوماتیک بیمارستانی</a>
-          <a href="#">درب اتوماتیک صنعتی</a>
-        </div>
+        <li class="menu-item-has-children">
+          <a href="#">
+            محصولات
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="sub-menu">
+            <li><a href="#">درب اتوماتیک کشویی</a></li>
+            <li><a href="#">درب اتوماتیک گردان</a></li>
+            <li><a href="#">درب اتوماتیک بیمارستانی</a></li>
+            <li><a href="#">درب اتوماتیک صنعتی</a></li>
+          </ul>
+        </li>
 
-        <a href="#">مجله</a>
-        <a href="#">پروژه‌ها</a>
-        <a href="#">درباره ما</a>
-        <a href="#">تماس با ما</a>
-      </div>
+        <li><a href="#">مجله</a></li>
+        <li><a href="#">پروژه‌ها</a></li>
+        <li><a href="#">درباره ما</a></li>
+        <li><a href="#">تماس با ما</a></li>
+      </ul>
     </div>
 
-    <!-- محتوای اصلی -->
-    <main>
-      <div
-        class="bg-main d-flex flex-column justify-content-center px-sm-5 px-2"
-        style="width: 100vw; height: 60vh"
-      >
-        <h1 class="fw-bold text-white col-sm-6 col-12 text-center">
-          کیفیت را با قیمت مناسب بخرید
-        </h1>
-        <span class="text-white fs-3 col-sm-6 col-12 text-center"
-          >با گروه درب های اتوماتیک ماندگار</span
-        >
-        <div
-          class="d-flex gap-2 align-items-center justify-content-center mt-5 col-sm-6 col-12 flex-sm-row flex-column"
-        >
-          <button class="realation-btn">با ما در ارتباط باشید</button>
-          <button class="more-information">اطلاعات بیشتر</button>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content text-center">
+          <h1 class="hero-title">کیفیت را با قیمت مناسب بخرید</h1>
+          <p class="hero-subtitle">با گروه درب های اتوماتیک ماندگار</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary btn-rel"
+              >با ما در ارتباط باشید</a
+            >
+            <a href="#" class="btn btn-secondary">اطلاعات بیشتر</a>
+          </div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <!-- فوتر -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-      <p class="mb-0">تمامی حقوق محفوظ است © 2024</p>
+    <!-- services section -->
+    <section
+      style="transform: translateY(-30px); max-width: 800px"
+      class="services-section bg-white p-3 mx-auto border"
+    >
+      <div class="d-flex justify-content-center">
+        <div
+          class="d-flex flex-column justify-content-center align-items-center gap-1 w-100"
+        >
+          <div class="arrow-red"></div>
+          <span style="font-size: 14px" class="fw-bold">خدمات ما</span>
+          <h2 class="fw-bolder">چه خدماتی ارائه می‌دهیم؟</h2>
+          <p>20 سال تجربه در تولید، طراحی و اجرای درب‌های اتوماتیک</p>
+          <div class="d-flex justify-content-center w-100 flex-wrap">
+            <div class="col-lg-3 col-sm-6 col-12 px-2 pt-2 pb-5">
+              <div class="box-service1 position-relative w-100">
+                <div
+                  class="text-box-service1 text-white d-flex justify-content-start align-items-center flex-column h-auto"
+                >
+                  <span class="text-center fw-bold">اجرا و نصب</span>
+                  <span style="font-size: 14px" class="text-center"
+                    >انواع درب‌های اتوماتیک در تمامی شهرهای ایران</span
+                  >
+                </div>
+                <div class="box-icon-box-service1">
+                  <img
+                    class="icon-box-service1"
+                    src="./assets/images/service1.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 px-2 pt-2 pb-5">
+              <div class="box-service1 position-relative w-100">
+                <div
+                  class="text-box-service1 text-white d-flex justify-content-start align-items-center flex-column h-auto"
+                >
+                  <span class="text-center fw-bold">طراحی و ساخت</span>
+                  <span style="font-size: 14px" class="text-center"
+                    >انواع قالب‌های صنعتی</span
+                  >
+                </div>
+                <div class="box-icon-box-service1">
+                  <img
+                    class="icon-box-service1"
+                    src="./assets/images/service2.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 px-2 pt-2 pb-5">
+              <div class="box-service1 position-relative w-100">
+                <div
+                  class="text-box-service1 text-white d-flex justify-content-start align-items-center flex-column h-auto"
+                >
+                  <span class="text-center fw-bold">سرویس دیزاین</span>
+                  <span style="font-size: 14px" class="text-center"
+                    >(حل مسئله و فرآیند سازی برای شرکت‌های SME)</span
+                  >
+                </div>
+                <div class="box-icon-box-service1">
+                  <img
+                    class="icon-box-service1"
+                    src="./assets/images/service3.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 px-2 pt-2 pb-5">
+              <div class="box-service1 position-relative w-100">
+                <div
+                  class="text-box-service1 text-white d-flex justify-content-start align-items-center flex-column h-auto"
+                >
+                  <span class="text-center fw-bold">تعویض و تعمیر</span>
+                  <span style="font-size: 14px" class="text-center">قطعات</span>
+                </div>
+                <div class="box-icon-box-service1">
+                  <img
+                    class="icon-box-service1"
+                    src="./assets/images/service4.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <span class="btn-all-service">مشاهده همه خدمات</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- counseling section -->
+    <section>
+      <div class="counseling-section">
+        <div class="arrow-red"></div>
+        <h3 class="text-white fw-bolder mt-2">مشاوره در زمینه</h3>
+        <p style="max-width: 240px" class="text-white text-center">
+          انتخاب بهترین درب اتوماتیک با توجه به کاربرد و معماری
+        </p>
+        <div
+          class="d-flex justify-content-center align-items-center gap-3 mt-1"
+        >
+          <span class="btn-more-info-counseling">اطلاعات بیشتر</span>
+          <span class="btn-contact-counseling">تماس با ما</span>
+        </div>
+      </div>
+      <div class="box-status-service" id="stats-section">
+        <div
+          class="col-md-3 col-12 text-white text-box-status-service d-flex flex-column align-items-center justify-content-center"
+        >
+          <span style="font-size: 10px">آمار</span>
+          <span class="fs-3">آنچه</span>
+          <span class="fs-3">انجام</span>
+          <span class="fs-3">داده‌ایم؟</span>
+        </div>
+        <div
+          class="col-md-3 col-12 d-flex flex-column justify-content-center align-items-center"
+        >
+          <div style="font-size: 3.5rem" class="d-flex align-items-center">
+            <span class="counter" data-target="130">۰</span>
+            <span style="color: #e00">+</span>
+          </div>
+          <span style="font-size: 10px">مشتری راضی</span>
+        </div>
+        <div
+          class="col-md-3 col-12 d-flex flex-column justify-content-center align-items-center"
+        >
+          <div style="font-size: 3.5rem" class="d-flex align-items-center">
+            <span class="counter" data-target="57">۰</span>
+          </div>
+          <span style="font-size: 10px">کارخانه</span>
+        </div>
+        <div
+          class="col-md-3 col-12 d-flex flex-column justify-content-center align-items-center"
+        >
+          <div style="font-size: 3.5rem" class="d-flex align-items-center">
+            <span class="counter" data-target="425">۰</span>
+            <span style="color: #e00">+</span>
+          </div>
+          <span style="font-size: 10px">پروژه</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- first section -->
+    <section class="mt-md-0 mt-5">
+      <div class="d-flex align-items-center justify-content-center gap-1 px-2">
+        <div style="color: #e00">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-check2-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"
+            />
+            <path
+              d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"
+            />
+          </svg>
+        </div>
+        <span class="text-center fw-bold"
+          >اولین تولید کنند درب اتوماتیک در ایران طبق استانداردهای جهانی</span
+        >
+      </div>
+      <div class="d-flex flex-wrap mt-3">
+        <div class="col-md-9 col-12">
+          <div class="d-flex flex-wrap">
+            <div style="height: 200px" class="col-sm-4 col-12">
+              <div class="h-100 img-first-box">
+                <div
+                  class="d-flex flex-column align-items-start justify-content-start p-3 gap-4"
+                >
+                  <div style="background-color: #e00; padding: 5px">
+                    <img
+                      style="width: 20px; height: 20px"
+                      src="./assets/images/Layer 35.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="text-white fw-bold fs-5"
+                    >درب اتوماتیک شیشه‌ای</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div style="height: 200px" class="col-sm-4 col-12">
+              <div class="h-100 img-sec-box">
+                <div
+                  class="d-flex flex-column align-items-start justify-content-start p-3 gap-4"
+                >
+                  <div style="background-color: #e00; padding: 5px">
+                    <img
+                      style="width: 20px; height: 20px"
+                      src="./assets/images/Layer 35.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="text-black fw-bold fs-5"
+                    >درب اتوماتیک فروشگاهی و مسکونی</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div style="height: 200px" class="col-sm-4 col-12">
+              <div class="h-100 img-first-box">
+                <div
+                  class="d-flex flex-column align-items-start justify-content-start p-3 gap-4"
+                >
+                  <div style="background-color: #e00; padding: 5px">
+                    <img
+                      style="width: 20px; height: 20px"
+                      src="./assets/images/Layer 35.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="text-white fw-bold fs-5"
+                    >درب اتوماتیک شیشه‌ای</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div style="height: 200px" class="col-sm-4 col-12">
+              <div class="h-100 img-sec-box">
+                <div
+                  class="d-flex flex-column align-items-start justify-content-start p-3 gap-4"
+                >
+                  <div style="background-color: #e00; padding: 5px">
+                    <img
+                      style="width: 20px; height: 20px"
+                      src="./assets/images/Layer 35.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="text-black fw-bold fs-5"
+                    >درب اتوماتیک فروشگاهی و مسکونی</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div style="height: 200px" class="col-sm-4 col-12">
+              <div class="h-100 img-first-box">
+                <div
+                  class="d-flex flex-column align-items-start justify-content-start p-3 gap-4"
+                >
+                  <div style="background-color: #e00; padding: 5px">
+                    <img
+                      style="width: 20px; height: 20px"
+                      src="./assets/images/Layer 35.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="text-white fw-bold fs-5"
+                    >درب اتوماتیک شیشه‌ای</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div style="height: 200px" class="col-sm-4 col-12">
+              <div class="h-100 img-sec-box">
+                <div
+                  class="d-flex flex-column align-items-start justify-content-start p-3 gap-4"
+                >
+                  <div style="background-color: #e00; padding: 5px">
+                    <img
+                      style="width: 20px; height: 20px"
+                      src="./assets/images/Layer 35.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="text-black fw-bold fs-5"
+                    >درب اتوماتیک فروشگاهی و مسکونی</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height: 400px" class="col-md-3 col-12">
+          <div class="h-100 img-first-box">
+            <div
+              class="d-flex flex-column align-items-center justify-content-center p-3 gap-4 h-100"
+            >
+              <p class="text-white fw-bold fs-3 text-center px-5">
+                ارائه محصولات با کیفیت و استاندارد در گروه صنعتی ماندگار
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- portfolio section -->
+    <section>
+      <div class="portfolio-section">
+        <div class="arrow-red"></div>
+        <span style="font-size: 14px" class="mt-2">پروژه‌های ما</span>
+        <h2 class="fw-bolder">کارهایی که انجام داده‌ایم؟</h2>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="col-lg-2 col-sm-3 col-12 p-2 ">
+          <div class="img-box-portfolio w-100 d-flex justify-content-end align-items-center flex-column">
+            <span  class="text-white fw-bold fs-4 text-img-box-portfolio">اماکن دولتی</span>
+          </div>
+         
+        </div>
+        <div class="col-lg-2 col-sm-3 col-12 p-2 ">
+          <div class="img-box-portfolio w-100 d-flex justify-content-end align-items-center flex-column">
+            <span  class="text-white fw-bold fs-4 text-img-box-portfolio">بیمارستان‌ها</span>
+          </div>
+         
+        </div>
+        <div class="col-lg-2 col-sm-3 col-12 p-2 ">
+          <div class="img-box-portfolio w-100 d-flex justify-content-end align-items-center flex-column">
+            <span  class="text-white fw-bold fs-4 text-img-box-portfolio">بانک‌ها</span>
+          </div>
+         
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="text-center mb-0">تمامی حقوق محفوظ است © 2024</p>
+      </div>
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JS شخصی -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        console.log("JavaScript loaded successfully");
-
-        // عناصر DOM
-        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-        const mobileMenu = document.querySelector(".mobile-menu");
-        const closeMenuBtn = document.querySelector(".close-menu");
-        const overlay = document.querySelector(".overlay");
-        const submenuToggles = document.querySelectorAll(".submenu-toggle");
-
-        // باز کردن منوی موبایل
-        if (mobileMenuBtn) {
-          mobileMenuBtn.addEventListener("click", function () {
-            console.log("Menu button clicked");
-            mobileMenu.style.display = "block";
-            setTimeout(() => {
-              mobileMenu.classList.add("active");
-              overlay.classList.add("active");
-            }, 10);
-            document.body.style.overflow = "hidden";
-          });
-        }
-
-        // بستن منوی موبایل
-        function closeMobileMenu() {
-          console.log("Closing menu");
-          mobileMenu.classList.remove("active");
-          overlay.classList.remove("active");
-          document.body.style.overflow = "";
-
-          setTimeout(() => {
-            mobileMenu.style.display = "none";
-          }, 300);
-
-          // بستن همه زیرمنوها
-          submenuToggles.forEach((toggle) => {
-            toggle.classList.remove("active");
-            const submenu = toggle.nextElementSibling;
-            if (submenu && submenu.classList.contains("submenu")) {
-              submenu.classList.remove("active");
-            }
-          });
-        }
-
-        if (closeMenuBtn) {
-          closeMenuBtn.addEventListener("click", closeMobileMenu);
-        }
-
-        if (overlay) {
-          overlay.addEventListener("click", closeMobileMenu);
-        }
-
-        // مدیریت زیرمنوها در موبایل
-        submenuToggles.forEach((toggle) => {
-          toggle.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            // بستن سایر زیرمنوها
-            submenuToggles.forEach((otherToggle) => {
-              if (otherToggle !== toggle) {
-                otherToggle.classList.remove("active");
-                const otherSubmenu = otherToggle.nextElementSibling;
-                if (
-                  otherSubmenu &&
-                  otherSubmenu.classList.contains("submenu")
-                ) {
-                  otherSubmenu.classList.remove("active");
-                }
-              }
-            });
-
-            // باز/بستن زیرمنوی فعلی
-            this.classList.toggle("active");
-            const submenu = this.nextElementSibling;
-            if (submenu && submenu.classList.contains("submenu")) {
-              submenu.classList.toggle("active");
-            }
-          });
-        });
-
-        // بستن منو با کلیک روی لینک‌ها (به جز لینک‌های زیرمنو)
-        const mobileNavLinks = document.querySelectorAll(
-          ".mobile-nav a:not(.submenu-toggle)"
-        );
-        mobileNavLinks.forEach((link) => {
-          link.addEventListener("click", closeMobileMenu);
-        });
-
-        // تست عملکرد زیرمنو در دسکتاپ
-        const desktopSubmenus = document.querySelectorAll(
-          ".desktop-nav .has-submenu"
-        );
-        console.log("Desktop submenus found:", desktopSubmenus.length);
-
-        desktopSubmenus.forEach((item) => {
-          item.addEventListener("mouseenter", function () {
-            console.log("Hover on desktop submenu item");
-          });
-        });
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
