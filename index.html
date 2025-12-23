@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عنوان سایت</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css"
+    />
+
+    <!-- fontawesome css -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+
+    <!-- CSS شخصی -->
+    <style>
+      .trapezoid-box {
+        clip-path: polygon(0 0, 92% 0, 100% 100%, 0% 100%);
+        background-color: #e00;
+      }
+
+      a {
+        text-decoration: none !important;
+      }
+
+      .menu-item {
+        color: #fff;
+      }
+
+      .menu-item:hover {
+        color: #eee !important;
+      }
+
+      .bg-main {
+        background-image: url("./assets/images/bg-main.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .more-information {
+        background-color: #e00;
+        color: white;
+        outline: none;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+
+      .more-information:hover {
+        background-color: #f00;
+      }
+
+      .realation-btn {
+        background-color: #fff;
+        color: #222;
+        outline: none;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+
+      .realation-btn:hover {
+        background-color: #ccc;
+      }
+
+      /* استایل‌های جدید برای منوی کشویی */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #000;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1001;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: #333;
+        z-index: 1000;
+        padding: 2rem;
+        overflow-y: auto;
+        transition: right 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #555;
+        padding-bottom: 1rem;
+      }
+
+      .close-menu {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .mobile-nav a {
+        color: white;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #555;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .mobile-nav a i {
+        transition: transform 0.3s ease;
+        font-size: 0.8rem;
+      }
+
+      .mobile-nav a.active i {
+        transform: rotate(180deg);
+      }
+
+      .submenu {
+        display: none;
+        padding-right: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .submenu.active {
+        display: block;
+      }
+
+      .submenu a {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #666;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+
+      /* استایل‌های دسکتاپ برای زیرمنوها - کاملاً بازنویسی شده */
+      .desktop-nav {
+        position: relative;
+        z-index: 1000;
+      }
+
+      .desktop-nav .nav-items {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .desktop-nav .nav-item {
+        position: relative;
+      }
+
+      .desktop-nav .nav-item.has-submenu:hover .submenu-container {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .desktop-nav .menu-link {
+        color: #fff;
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: color 0.3s;
+      }
+
+      .desktop-nav .menu-link:hover {
+        color: #eee;
+      }
+
+      .desktop-nav .menu-link i {
+        font-size: 0.7rem;
+        transition: transform 0.3s;
+      }
+
+      .desktop-nav .nav-item.has-submenu:hover .menu-link i {
+        transform: rotate(180deg);
+      }
+
+      .desktop-nav .submenu-container {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        background: #e00;
+        min-width: 200px;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+      }
+
+      .desktop-nav .submenu {
+        display: block !important;
+        padding: 0.5rem 0;
+        margin: 0;
+      }
+
+      .desktop-nav .submenu a {
+        display: block;
+        padding: 0.6rem 1rem;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background 0.3s;
+        white-space: nowrap;
+      }
+
+      .desktop-nav .submenu a:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #eee;
+      }
+
+      .desktop-nav .submenu a:last-child {
+        border-bottom: none;
+      }
+
+      /* رسپانسیو */
+      @media (max-width: 992px) {
+        .desktop-nav {
+          display: none !important;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+          position: absolute;
+          left: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .trapezoid-box {
+          display: none;
+        }
+
+        header .d-flex.justify-content-between {
+          position: relative;
+          padding-right: 60px !important;
+        }
+
+        .social-icons {
+          padding-left: 0 !important;
+          margin-bottom: 10px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .bg-main h1 {
+          font-size: 1.5rem;
+        }
+
+        .bg-main span {
+          font-size: 1.2rem;
+        }
+
+        .bg-main .d-flex {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div
+        class="d-flex justify-content-between align-items-center ps-5 border position-relative"
+      >
+        <!-- دکمه منوی موبایل -->
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a class="navbar-brand" href="#">
+          <img
+            src="./assets/images/logo.png"
+            alt="لوگو"
+            height="40"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <div class="d-flex flex-column align-items-end">
+          <div
+            class="social-icons d-flex align-items-center gap-1 pt-2"
+            style="padding-left: 8rem"
+          >
+            <i
+              style="width: 30px; height: 30px"
+              class="fa-brands fa-telegram fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
+            ></i>
+            <i
+              style="width: 30px; height: 30px"
+              class="fa-brands fa-whatsapp fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
+            ></i>
+            <i
+              style="width: 30px; height: 30px"
+              class="fa-brands fa-instagram fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
+            ></i>
+            <i
+              style="width: 30px; height: 30px"
+              class="fa-brands fa-weixin fs-5 rounded-circle text-white bg-black p-1 d-flex justify-content-center align-items-center"
+            ></i>
+          </div>
+
+          <!-- منوی دسکتاپ کاملاً بازنویسی شده -->
+          <nav
+            style="padding-left: 5rem; transform: translateY(50%)"
+            class="trapezoid-box d-flex align-items-center py-2 ps-5 position-relative desktop-nav"
+          >
+            <ul class="nav-items">
+              <li class="nav-item">
+                <a class="menu-link" href="#">خانه</a>
+              </li>
+
+              <li class="nav-item has-submenu">
+                <a class="menu-link" href="#">
+                  خدمات
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="submenu-container">
+                  <div class="submenu">
+                    <a href="#">نصب و راه‌اندازی</a>
+                    <a href="#">تعمیر و نگهداری</a>
+                    <a href="#">پشتیبانی فنی</a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item has-submenu">
+                <a class="menu-link" href="#">
+                  محصولات
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="submenu-container">
+                  <div class="submenu">
+                    <a href="#">درب اتوماتیک کشویی</a>
+                    <a href="#">درب اتوماتیک گردان</a>
+                    <a href="#">درب اتوماتیک بیمارستانی</a>
+                    <a href="#">درب اتوماتیک صنعتی</a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="menu-link" href="#">مجله</a>
+              </li>
+              <li class="nav-item">
+                <a class="menu-link" href="#">پروژه‌ها</a>
+              </li>
+              <li class="nav-item">
+                <a class="menu-link" href="#">درباره ما</a>
+              </li>
+              <li class="nav-item">
+                <a class="menu-link" href="#">تماس با ما</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- منوی موبایل -->
+    <div class="overlay"></div>
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <h5 class="text-white mb-0">منو</h5>
+        <button class="close-menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="mobile-nav">
+        <a href="#">خانه</a>
+
+        <a href="#" class="submenu-toggle"
+          >خدمات <i class="fas fa-chevron-down"></i
+        ></a>
+        <div class="submenu">
+          <a href="#">نصب و راه‌اندازی</a>
+          <a href="#">تعمیر و نگهداری</a>
+          <a href="#">پشتیبانی فنی</a>
+        </div>
+
+        <a href="#" class="submenu-toggle"
+          >محصولات <i class="fas fa-chevron-down"></i
+        ></a>
+        <div class="submenu">
+          <a href="#">درب اتوماتیک کشویی</a>
+          <a href="#">درب اتوماتیک گردان</a>
+          <a href="#">درب اتوماتیک بیمارستانی</a>
+          <a href="#">درب اتوماتیک صنعتی</a>
+        </div>
+
+        <a href="#">مجله</a>
+        <a href="#">پروژه‌ها</a>
+        <a href="#">درباره ما</a>
+        <a href="#">تماس با ما</a>
+      </div>
+    </div>
+
+    <!-- محتوای اصلی -->
+    <main>
+      <div
+        class="bg-main d-flex flex-column justify-content-center px-sm-5 px-2"
+        style="width: 100vw; height: 60vh"
+      >
+        <h1 class="fw-bold text-white col-sm-6 col-12 text-center">
+          کیفیت را با قیمت مناسب بخرید
+        </h1>
+        <span class="text-white fs-3 col-sm-6 col-12 text-center"
+          >با گروه درب های اتوماتیک ماندگار</span
+        >
+        <div
+          class="d-flex gap-2 align-items-center justify-content-center mt-5 col-sm-6 col-12 flex-sm-row flex-column"
+        >
+          <button class="realation-btn">با ما در ارتباط باشید</button>
+          <button class="more-information">اطلاعات بیشتر</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- فوتر -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+      <p class="mb-0">تمامی حقوق محفوظ است © 2024</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS شخصی -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("JavaScript loaded successfully");
+
+        // عناصر DOM
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const closeMenuBtn = document.querySelector(".close-menu");
+        const overlay = document.querySelector(".overlay");
+        const submenuToggles = document.querySelectorAll(".submenu-toggle");
+
+        // باز کردن منوی موبایل
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", function () {
+            console.log("Menu button clicked");
+            mobileMenu.style.display = "block";
+            setTimeout(() => {
+              mobileMenu.classList.add("active");
+              overlay.classList.add("active");
+            }, 10);
+            document.body.style.overflow = "hidden";
+          });
+        }
+
+        // بستن منوی موبایل
+        function closeMobileMenu() {
+          console.log("Closing menu");
+          mobileMenu.classList.remove("active");
+          overlay.classList.remove("active");
+          document.body.style.overflow = "";
+
+          setTimeout(() => {
+            mobileMenu.style.display = "none";
+          }, 300);
+
+          // بستن همه زیرمنوها
+          submenuToggles.forEach((toggle) => {
+            toggle.classList.remove("active");
+            const submenu = toggle.nextElementSibling;
+            if (submenu && submenu.classList.contains("submenu")) {
+              submenu.classList.remove("active");
+            }
+          });
+        }
+
+        if (closeMenuBtn) {
+          closeMenuBtn.addEventListener("click", closeMobileMenu);
+        }
+
+        if (overlay) {
+          overlay.addEventListener("click", closeMobileMenu);
+        }
+
+        // مدیریت زیرمنوها در موبایل
+        submenuToggles.forEach((toggle) => {
+          toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // بستن سایر زیرمنوها
+            submenuToggles.forEach((otherToggle) => {
+              if (otherToggle !== toggle) {
+                otherToggle.classList.remove("active");
+                const otherSubmenu = otherToggle.nextElementSibling;
+                if (
+                  otherSubmenu &&
+                  otherSubmenu.classList.contains("submenu")
+                ) {
+                  otherSubmenu.classList.remove("active");
+                }
+              }
+            });
+
+            // باز/بستن زیرمنوی فعلی
+            this.classList.toggle("active");
+            const submenu = this.nextElementSibling;
+            if (submenu && submenu.classList.contains("submenu")) {
+              submenu.classList.toggle("active");
+            }
+          });
+        });
+
+        // بستن منو با کلیک روی لینک‌ها (به جز لینک‌های زیرمنو)
+        const mobileNavLinks = document.querySelectorAll(
+          ".mobile-nav a:not(.submenu-toggle)"
+        );
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener("click", closeMobileMenu);
+        });
+
+        // تست عملکرد زیرمنو در دسکتاپ
+        const desktopSubmenus = document.querySelectorAll(
+          ".desktop-nav .has-submenu"
+        );
+        console.log("Desktop submenus found:", desktopSubmenus.length);
+
+        desktopSubmenus.forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            console.log("Hover on desktop submenu item");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
