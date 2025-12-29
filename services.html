@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لیست خدمات</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+       .hero-section-services {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("./assets/images/bg-services.png") center/cover no-repeat;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section-services:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(224, 0, 0, 0.2),
+          transparent 70%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        animation-delay: 0.2s;
+      }
+
+
+      /* Service Cards Styling */
+      .service-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 2rem 1.5rem;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(224, 0, 0, 0.05) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 16px 40px rgba(224, 0, 0, 0.15);
+        border-color: #e00;
+      }
+
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-icon-wrapper {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, #e00 0%, #ff4444 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(224, 0, 0, 0.2);
+      }
+
+      .service-card:hover .service-icon-wrapper {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 30px rgba(224, 0, 0, 0.3);
+      }
+
+      .service-icon-wrapper img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+
+      .service-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 0.8rem;
+        transition: color 0.3s ease;
+      }
+
+      .service-card:hover .service-title {
+        color: #e00;
+      }
+
+      .service-description {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.8;
+        font-weight: 500;
+      }
+
+      /* services-page Section */
+      .services-page-section {
+        background-image: url("./assets/images/bg-main.png");
+        padding: 3rem 2rem;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+        height: 70vh;
+        background-image: url("./assets/images/bg-main.png");
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #2227;
+        background-blend-mode: multiply;
+        position: relative;
+      }
+
+      .btn-contact-services-page,
+      .btn-more-info-services-page {
+        padding: 0.8rem 2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-contact-services-page {
+        background: linear-gradient(90deg, #e00 0%, #ff4444 100%);
+        color: #fff;
+        border: 2px solid #e00;
+      }
+
+      .btn-contact-services-page:hover {
+        background: linear-gradient(90deg, #ff4444 0%, #e00 100%);
+        transform: translateX(-4px);
+        box-shadow: 0 8px 20px rgba(224, 0, 0, 0.3);
+      }
+
+      .btn-more-info-services-page {
+        background: transparent;
+        color: #fff;
+        border: 2px solid #fff;
+      }
+
+      .btn-more-info-services-page:hover {
+        background: #fff;
+        color: #e00;
+        transform: translateX(4px);
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Form Styling */
+      .box-status-services {
+        display: flex;
+        flex-wrap: wrap;
+        background: #f9f9f9;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(-100px);
+        width: 100%;
+        margin: auto;
+        max-width: 1000px;
+      }
+
+      .text-box-status-service {
+        background: linear-gradient(135deg, #e00 0%, #333 100%);
+      }
+
+      .box-status-services input,
+      .box-status-services textarea,
+      .box-status-services select {
+        background-color: #fff;
+        border: 1.5px solid #e0e0e0 !important;
+        border-radius: 6px;
+        color: #222;
+        transition: all 0.3s ease;
+        font-size: 13px;
+      }
+
+      .box-status-services input:focus,
+      .box-status-services textarea:focus,
+      .box-status-services select:focus {
+        border-color: #e00 !important;
+        box-shadow: 0 0 0 3px rgba(224, 0, 0, 0.1);
+        outline: none;
+        background-color: #fff;
+      }
+
+      .box-status-services input::placeholder,
+      .box-status-services textarea::placeholder {
+        color: #999;
+      }
+
+      .box-status-services select option {
+        color: #222;
+        background-color: #fff;
+      }
+
+      .box-status-services textarea {
+        resize: none;
+        font-family: inherit;
+      }
+
+      .box-status-services .p-2:last-child {
+        margin-top: 0.5rem;
+      }
+
+      .box-status-services span[style*="background-color: #e00"] {
+        border-radius: 6px;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(224, 0, 0, 0.2);
+      }
+
+      .box-status-services span[style*="background-color: #e00"]:hover {
+        background: linear-gradient(135deg, #e00 0%, #ff4444 100%) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(224, 0, 0, 0.3);
+      }
+      .contact-form-section {
+        padding: 4rem 0;
+        background-color: var(--light-color);
+      }
+
+      .section-title {
+        position: relative;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .form-control-custom {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        background-color: var(--light-color);
+      }
+
+      .form-control-custom:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(224, 0, 0, 0.1);
+        outline: none;
+      }
+      .form-select-custom {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        background-color: var(--light-color);
+      }
+
+      .form-select-custom:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(224, 0, 0, 0.1);
+        outline: none;
+      }
+
+      .btn-send {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .btn-send:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(224, 0, 0, 0.2);
+      }
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .service-card {
+          padding: 1.5rem 1rem;
+        }
+        .box-status-services {
+          transform: translateY(0);
+        }
+
+        .service-icon-wrapper {
+          width: 75px;
+          height: 75px;
+        }
+
+        .service-icon-wrapper img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .service-title {
+          font-size: 16px;
+        }
+
+        .service-description {
+          font-size: 12px;
+        }
+
+        .services-page-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .box-status-services {
+          flex-direction: column;
+        }
+
+        .text-box-status-service {
+          padding: 2rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .service-card {
+          padding: 1.2rem 0.8rem;
+        }
+
+        .service-icon-wrapper {
+          width: 65px;
+          height: 65px;
+        }
+
+        .service-icon-wrapper img {
+          width: 42px;
+          height: 42px;
+        }
+
+        .service-title {
+          font-size: 15px;
+          margin-bottom: 0.6rem;
+        }
+
+        .service-description {
+          font-size: 11px;
+          line-height: 1.6;
+        }
+
+        .btn-contact-services-page,
+        .btn-more-info-services-page {
+          padding: 0.6rem 1.5rem;
+          font-size: 12px;
+        }
+
+        .services-page-section {
+          padding: 1.5rem 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .box-status-services .d-flex.flex-wrap.p-5 {
+          padding: 1.5rem !important;
+        }
+      }
+
+      
+
+      .arrow-red {
+        width: 15px;
+        height: 10px;
+        background: #e00;
+        transform: skewY(-30deg);
+      }
+
+      .box-service1 {
+        background: url("./assets/images/bg-main.png") center/cover no-repeat;
+        background-color: #2228;
+        background-blend-mode: multiply;
+        height: 200px;
+        cursor: pointer;
+        transition: 0.4s;
+        border-radius: 10px;
+      }
+
+      .box-service1:hover {
+        background-color: #2225;
+      }
+
+      .text-box-service1 {
+        transform: translateY(80px);
+        transition: 0.4s;
+      }
+
+      .box-service1:hover .text-box-service1 {
+        transform: translateY(70px);
+      }
+
+      .box-icon-box-service1 {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        background: #e00;
+        padding: 10px;
+        transition: 0.4s;
+        border-radius: 5px;
+      }
+
+      .icon-box-service1 {
+        width: 40px;
+        height: 40px;
+        background-size: cover;
+      }
+
+      .box-service1:hover .box-icon-box-service1 {
+        transform: translate(-50%, 70%);
+      }
+
+      .btn-all-service {
+        background-color: #222;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        transition: 0.4s;
+      }
+
+      .btn-all-service:hover {
+        background-color: #333;
+        color: #ccc;
+      }
+
+      .box-product-services {
+        width: 320px;
+        height: 210px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        background: #fff;
+        display: block;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .box-product-services img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .box-product-services:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      }
+      .box-product-services:hover img {
+        transform: scale(1.06);
+      }
+      .text-box-product-services,
+      .text-box-product-services2 {
+        width: 320px;
+        border-radius: 8px;
+        text-align: center;
+        background: linear-gradient(90deg, #e00 0%, #c40000 100%);
+        box-shadow: 0 6px 18px rgba(224, 0, 0, 0.12);
+      }
+      .text-box-product-services {
+        background: linear-gradient(90deg, #e00 0%, #e00 100%);
+      }
+      .text-box-product-services2 {
+        background: linear-gradient(90deg, #222 0%, #222 100%);
+      }
+      .text-box-product-services,
+      .text-box-product-services2 {
+        padding: 10px 12px;
+        display: inline-block;
+      }
+      @media (max-width: 768px) {
+        .box-product-services,
+        .text-box-product-services,
+        .text-box-product-services2 {
+          width: 100%;
+        }
+        .box-product-services {
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: #ccc">
+    <!-- Header -->
+    <header style="margin-top: 0px" class="header -mt-lg-3">
+      <div class="">
+        <div class="header-main">
+          <!-- Logo -->
+          <div class="logo ps-lg-5 ps-2">
+            <img src="./assets/images/logo.png" alt="لوگو" height="40" />
+          </div>
+          <div class="d-flex flex-column">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn d-lg-none pe-lg-5 pe-2">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-top d-lg-block d-none">
+              <div class="header-social">
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-telegram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-weixin"></i
+                ></a>
+              </div>
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav d-none d-lg-block">
+              <ul class="main-menu">
+                <li><a href="#">خانه</a></li>
+
+                <li class="menu-item-has-children">
+                  <a href="#">
+                    خدمات
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a href="#">نصب و راه‌اندازی</a></li>
+                    <li><a href="#">تعمیر و نگهداری</a></li>
+                    <li><a href="#">پشتیبانی فنی</a></li>
+                  </ul>
+                </li>
+
+                <li class="menu-item-has-children">
+                  <a href="#">
+                    محصولات
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a href="#">درب اتوماتیک کشویی</a></li>
+                    <li><a href="#">درب اتوماتیک گردان</a></li>
+                    <li><a href="#">درب اتوماتیک بیمارستانی</a></li>
+                    <li><a href="#">درب اتوماتیک صنعتی</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="#">مجله</a></li>
+                <li><a href="#">پروژه‌ها</a></li>
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">تماس با ما</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-container">
+      <div class="mobile-menu-header">
+        <h5>منو</h5>
+        <button class="close-mobile-menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="mobile-menu">
+        <li><a href="#">خانه</a></li>
+
+        <li class="menu-item-has-children">
+          <a href="#">
+            خدمات
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="sub-menu">
+            <li><a href="#">نصب و راه‌اندازی</a></li>
+            <li><a href="#">تعمیر و نگهداری</a></li>
+            <li><a href="#">پشتیبانی فنی</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item-has-children">
+          <a href="#">
+            محصولات
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="sub-menu">
+            <li><a href="#">درب اتوماتیک کشویی</a></li>
+            <li><a href="#">درب اتوماتیک گردان</a></li>
+            <li><a href="#">درب اتوماتیک بیمارستانی</a></li>
+            <li><a href="#">درب اتوماتیک صنعتی</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#">مجله</a></li>
+        <li><a href="#">پروژه‌ها</a></li>
+        <li><a href="#">درباره ما</a></li>
+        <li><a href="#">تماس با ما</a></li>
+      </ul>
+    </div>
+
+    <!-- Hero Section -->
+     <section class="hero-section-services">
+      <div class="hero-content container">
+        <h1 class="hero-title fade-in-up">اخبار و مقالات تخصصی</h1>
+        <p class="hero-subtitle fade-in-up">
+          جدیدترین اخبار، تحلیل‌ها و راهنمایی‌های تخصصی را در اینجا دنبال کنید.
+          همواره به‌روز و پاسخگو هستیم
+        </p>
+      </div>
+    </section>
+
+    <!-- work services section -->
+    <section style="background-color: #fff">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center pt-4"
+      >
+        <div class="arrow-red"></div>
+        <span class="mt-2">ما چه کارهایی انجام می‌دهیم؟</span>
+        <div class="fw-bold fs-4">
+          <span>بررسی اجمالی</span>
+          <span style="color: #e00">خدمات ما</span>
+        </div>
+        <div class="mt-2">
+          <p
+            style="max-width: 250px; font-size: 14px; color: #555"
+            class="text-center fw-bold"
+          >
+            شرکت ماندگار با 20 سال تجربه موفق در زمینه تولید، توزیع و نصب انواع
+            درب‌های اتوماتیک با افتخار همراه شماست.
+          </p>
+        </div>
+      </div>
+      <div
+        style="max-width: 1000px"
+        class="mx-auto d-flex flex-wrap align-items-center justify-content-center"
+      >
+        <div class="col-sm-4 col-12 p-2">
+          <div class="service-card">
+            <div class="service-icon-wrapper">
+              <img src="./assets/images/service1.png" alt="" />
+            </div>
+            <h3 class="service-title">اجرا و نصب</h3>
+            <p class="service-description">
+              اجرا و نصب انواع درب‌های اتوماتیک در تمامی شهرهای ایران
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 p-2">
+          <div class="service-card">
+            <div class="service-icon-wrapper">
+              <img src="./assets/images/service1.png" alt="" />
+            </div>
+            <h3 class="service-title">طراحی و ساخت</h3>
+            <p class="service-description">
+              اجرا و نصب انواع درب‌های اتوماتیک در تمامی شهرهای ایران
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 p-2">
+          <div class="service-card">
+            <div class="service-icon-wrapper">
+              <img src="./assets/images/service1.png" alt="" />
+            </div>
+            <h3 class="service-title">سرویس دیزاین</h3>
+            <p class="service-description">
+              اجرا و نصب انواع درب‌های اتوماتیک در تمامی شهرهای ایران
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 p-2">
+          <div class="service-card">
+            <div class="service-icon-wrapper">
+              <img src="./assets/images/service1.png" alt="" />
+            </div>
+            <h3 class="service-title">وارانتی</h3>
+            <p class="service-description">
+              اجرا و نصب انواع درب‌های اتوماتیک در تمامی شهرهای ایران
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 p-2">
+          <div class="service-card">
+            <div class="service-icon-wrapper">
+              <img src="./assets/images/service1.png" alt="" />
+            </div>
+            <h3 class="service-title">گارانتی</h3>
+            <p class="service-description">
+              اجرا و نصب انواع درب‌های اتوماتیک در تمامی شهرهای ایران
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 p-2">
+          <div class="service-card">
+            <div class="service-icon-wrapper">
+              <img src="./assets/images/service1.png" alt="" />
+            </div>
+            <h3 class="service-title">خدمات پس از فروش</h3>
+            <p class="service-description">
+              اجرا و نصب انواع درب‌های اتوماتیک در تمامی شهرهای ایران
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- services-page section -->
+    <section>
+      <div class="services-page-section">
+        <div class="arrow-red"></div>
+        <h3 class="text-white fw-bolder mt-2">گارانتی و خدمات پس از فروش</h3>
+        <p style="max-width: 500px" class="text-white text-center">
+          گروه صنعتی ماندگار با ارائه 4 سال گارانتی و 15 سال خدمات پس از فروش
+          آماده ارائه خدمات به شما همراهان گرامی می‌باشد.
+        </p>
+        <div
+          class="d-flex justify-content-center align-items-center gap-3 mt-1"
+        >
+          <span class="btn-more-info-services-page">تماس با ما</span>
+          <span class="btn-contact-services-page">اطلاعات بیشتر</span>
+        </div>
+      </div>
+      <div class="box-status-services">
+        <div
+          class="col-md-6 col-12 text-white text-box-status-service d-flex flex-column align-items-center justify-content-start"
+        >
+          <span style="font-size: 10px" class="mt-5"
+            >درخواست مشاوره رایگان</span
+          >
+          <span class="fs-3">به مشاوره نیاز دارید؟</span>
+          <span
+            style="font-size: 12px; max-width: 200px"
+            class="text-center mt-5"
+            >با ما تماس بگیرید و سوال خود را بپرسید، کاملا رایگان است</span
+          >
+        </div>
+        <!-- <div
+          class="col-md-6 col-12 d-flex flex-column justify-content-center align-items-center bg-white"
+        >
+          <div class="d-flex flex-wrap p-5">
+            <div class="col-sm-6 col-12 p-2">
+              <input
+                class="px-2 py-1 w-100"
+                type="text"
+                placeholder="نام شما (*)"
+              />
+            </div>
+            <div class="col-sm-6 col-12 p-2">
+              <input
+                class="px-2 py-1 w-100"
+                type="text"
+                placeholder="ایمیل شما (*)"
+              />
+            </div>
+            <div class="col-sm-6 col-12 p-2">
+              <input class="px-2 py-1 w-100" type="text" placeholder="موضوع" />
+            </div>
+            <div class="col-sm-6 col-12 p-2">
+              <select
+                style="background-color: transparent; border: 1px solid #3338"
+                class="w-100 h-100 px-2 py-2"
+                name=""
+                id=""
+              >
+                <option value="dsfsd">دپارتمان کسب و کار</option>
+                <option value="dsfsd">دپارتمان کسب و کار</option>
+                <option value="dsfsd">دپارتمان کسب و کار</option>
+              </select>
+            </div>
+            <div class="col-12 p-2">
+              <textarea
+                style="height: 150px"
+                class="px-2 py-1 w-100"
+                name=""
+                id=""
+                placeholder="پیام شما"
+              ></textarea>
+            </div>
+            <div class="p-2">
+              <span
+                style="
+                  background-color: #e00;
+                  cursor: pointer;
+                  user-select: none;
+                "
+                class="px-2 py-1 text-white"
+                >ارسال پیام</span
+              >
+            </div>
+          </div>
+        </div> -->
+
+        <div class="col-lg-6 p-3">
+          <form id="contactForm" class="contact-form">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input
+                  class="form-control-custom w-100"
+                  type="text"
+                  placeholder="نام شما *"
+                  required
+                />
+              </div>
+              <div class="col-md-6">
+                <input
+                  class="form-control-custom w-100"
+                  type="email"
+                  placeholder="ایمیل شما *"
+                  required
+                />
+              </div>
+              <div class="col-md-6">
+                <input
+                  class="form-control-custom w-100"
+                  type="text"
+                  placeholder="موضوع"
+                />
+              </div>
+              <div class="col-md-6">
+                <select class="form-select-custom w-100" required>
+                  <option value="" selected disabled>دپارتمان مورد نظر</option>
+                  <option value="sales">دپارتمان فروش</option>
+                  <option value="support">دپارتمان پشتیبانی</option>
+                  <option value="technical">دپارتمان فنی</option>
+                  <option value="management">مدیریت</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <textarea
+                  class="form-control-custom w-100"
+                  rows="6"
+                  placeholder="پیام شما *"
+                  required
+                ></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-send px-4 py-2">
+                  ارسال پیام
+                  <i class="fas fa-paper-plane ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div
+        style="margin-top: -50px"
+        class="d-flex flex-column justify-content-center align-items-center"
+      >
+        <div class="arrow-red"></div>
+        <span class="mt-2 fw-bold fs-4">محصولات ما</span>
+
+        <div class="mt-2">
+          <p
+            style="max-width: 400px; font-size: 14px; color: #555"
+            class="text-center"
+          >
+            در صورت نیاز به مشاوره و کسب اطلاعات بیشتر با کارشناسان ما در شرکت
+            ماندگار تماس بگیرید
+          </p>
+        </div>
+        <div style="max-width: 1000px" class="mx-auto">
+          <div class="d-flex flex-wrap mx-auto justify-content-center">
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services"
+              >
+                بانک‌ها
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services2"
+              >
+                بیمارستان‌ها و مراکز درمانی
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services"
+              >
+                هتل‌ها
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services"
+              >
+                اماکن دولتی
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services2"
+              >
+                پتروشیمی و پالایشگاه‌ها
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services"
+              >
+                رستوران‌ها
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services"
+              >
+                فرودگاه‌ها
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services2"
+              >
+                مجتمع‌های تجاری و برج‌ها
+              </a>
+            </div>
+            <div
+              class="col-md-4 col-12 p-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <a href="#" class="d-flex flex-column box-product-services">
+                <img src="./assets/images/bg-projects.png" alt="" />
+              </a>
+              <a
+                href="#"
+                class="fw-bold mt-2 d-flex justify-content-center text-white py-2 text-box-product-services"
+              >
+                مراکز آموزشی و دانشگاه‌ها
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div style="height: 50px"></div>
+    <!-- Footer -->
+    <footer>
+      <div
+        class="footer d-flex flex-wrap justify-content-center gap-5 position-relative"
+      >
+        <div style="width: 400px" class="position-relative">
+          <div class="py-4 px-5 box-logo-footer">
+            <img
+              style="width: 150px"
+              src="./assets/images/logo-footer.png"
+              alt=""
+            />
+            <div
+              class="d-flex flex-column mt-4 align-items-start justify-content-center gap-2"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="#e00"
+                  class="bi bi-telephone"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
+                  />
+                </svg>
+                <span>02122113110</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="#e00"
+                  class="bi bi-envelope"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                  />
+                </svg>
+                <span>mandegardoor</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="35"
+                  fill="#e00"
+                  class="bi bi-geo-alt"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"
+                  />
+                  <path
+                    d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+                  />
+                </svg>
+                <span style="font-size: 14px"
+                  >بلوار ميرداماد، ميدان مادر، ابتداي خيابان سنجابي (بهروز)،
+                  پلاك3 ساختمان مادر واحد 4</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-5">
+          <div class="d-flex gap-5 flex-wrap">
+            <div>
+              <h6 class="fw-bold">لینک‌های مفید</h6>
+              <div
+                style="width: 40px; background: #e00; height: 3px"
+                class="mt-3"
+              ></div>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>درباره‌ما</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>خدمات‌ما</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>پروژه</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>محصولات</span>
+              </a>
+            </div>
+            <div>
+              <h6 class="fw-bold">تماس با ما</h6>
+              <div
+                style="width: 40px; background: #e00; height: 3px"
+                class="mt-3"
+              ></div>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>شبکه‌های اجتماعی</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>نمایندگی</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>نقشه سایت</span>
+              </a>
+            </div>
+          </div>
+          <div
+            style="left: 0; right: 0; bottom: 10px"
+            class="position-absolute"
+          >
+            <div class="d-flex gap-2 flex-row-reverse px-2">
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M349.33 69.33a93.62 93.62 0 0 1 93.34 93.34v186.66a93.62 93.62 0 0 1-93.34 93.34H162.67a93.62 93.62 0 0 1-93.34-93.34V162.67a93.62 93.62 0 0 1 93.34-93.34h186.66m0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32z"
+                  ></path>
+                  <path
+                    d="M377.33 162.67a28 28 0 1 1 28-28 27.94 27.94 0 0 1-28 28zM256 181.33A74.67 74.67 0 1 1 181.33 256 74.75 74.75 0 0 1 256 181.33m0-37.33a112 112 0 1 0 112 112 112 112 0 0 0-112-112z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  t="1569683925316"
+                  viewBox="0 0 1024 1024"
+                  version="1.1"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M713.5 599.9c-10.9-5.6-65.2-32.2-75.3-35.8-10.1-3.8-17.5-5.6-24.8 5.6-7.4 11.1-28.4 35.8-35 43.3-6.4 7.4-12.9 8.3-23.8 2.8-64.8-32.4-107.3-57.8-150-131.1-11.3-19.5 11.3-18.1 32.4-60.2 3.6-7.4 1.8-13.7-1-19.3-2.8-5.6-24.8-59.8-34-81.9-8.9-21.5-18.1-18.5-24.8-18.9-6.4-0.4-13.7-0.4-21.1-0.4-7.4 0-19.3 2.8-29.4 13.7-10.1 11.1-38.6 37.8-38.6 92s39.5 106.7 44.9 114.1c5.6 7.4 77.7 118.6 188.4 166.5 70 30.2 97.4 32.8 132.4 27.6 21.3-3.2 65.2-26.6 74.3-52.5 9.1-25.8 9.1-47.9 6.4-52.5-2.7-4.9-10.1-7.7-21-13z"
+                  ></path>
+                  <path
+                    d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3-41.3-41.3-89.5-73.8-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6 0.3-119.3 12.3-174.5 35.9-53.3 22.8-101.1 55.2-142 96.5-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9 0.3 69.4 16.9 138.3 48 199.9v152c0 25.4 20.6 46 46 46h152.1c61.6 31.1 130.5 47.7 199.9 48h2.1c59.9 0 118-11.6 172.7-34.3 53.5-22.3 101.6-54.3 142.8-95.2 41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5 0.3-60.9-11.5-120-34.8-175.6z m-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-0.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-0.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-0.6 99.6-39.7 192.9-110.1 262.7z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 448 512"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10"
+                  ></path>
+                  <path
+                    d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

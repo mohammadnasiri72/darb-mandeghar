@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>درباره ما</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+      .hero-section-about-us {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("./assets/images/bg-about-us.png") center/cover no-repeat;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section-about-us:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(224, 0, 0, 0.2),
+          transparent 70%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        animation-delay: 0.2s;
+      }
+
+      .history-section {
+        border-radius: 10px;
+        transform: translateY(-50px);
+      }
+
+      body {
+        background-color: #f8f9fa;
+        color: #333;
+        line-height: 1.8;
+      }
+
+      .timeline-section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        color: #2c3e50;
+        font-weight: 700;
+        font-size: 2.5rem;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+        width: 100px;
+        height: 4px;
+        background: #3498db;
+        border-radius: 2px;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: #3498db;
+        top: 0;
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+        border-radius: 3px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+        margin-bottom: 0px;
+      }
+
+      .timeline-item:nth-child(odd) {
+        right: 0;
+        padding-left: 0;
+        padding-right: 0px;
+      }
+      .timeline-item:nth-child(odd) .timeline-content {
+        border-right: 4px solid #e00;
+      }
+
+      .timeline-item:nth-child(even) {
+        right: 50%;
+        padding-right: 0;
+        padding-left: 0px;
+      }
+      .timeline-item:nth-child(even) .timeline-content {
+        border-left: 4px solid #e00;
+      }
+
+      .timeline-content {
+        padding: 10px 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .timeline-year {
+        position: absolute;
+        width: 120px;
+        height: 40px;
+        background-color: #2c3e50;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        border-radius: 20px;
+        z-index: 1;
+        top: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-year {
+        left: -160px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-year {
+        right: -160px;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 4px solid #3498db;
+        border-radius: 50%;
+        top: 30px;
+        z-index: 1;
+      }
+
+      .timeline-item:nth-child(odd)::after {
+        left: -10px;
+      }
+
+      .timeline-item:nth-child(even)::after {
+        right: -10px;
+      }
+
+      .event-title {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 1.2rem;
+      }
+
+      .event-desc {
+        color: #555;
+        font-size: 0.95rem;
+      }
+
+     
+
+
+
+
+      
+        
+     
+        
+        .team-slider-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to left, #3498db, #e74c3c);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 25px auto 0;
+            line-height: 1.8;
+        }
+        
+        /* استایل‌های Swiper */
+        .swiper-container {
+            width: 100%;
+            padding: 30px 10px 70px;
+            position: relative;
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+            overflow: visible !important;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .swiper-slide:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+       
+        
+      
+        
+        /* استایل بخش تصویر */
+        .slide-image-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .swiper-slide:hover .slide-image {
+            transform: scale(1.05);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
+        }
+        
+        /* استایل محتوا */
+        .slide-content {
+            padding: 25px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .member-name {
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-position {
+            color: #3498db;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .member-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+            flex-grow: 1;
+        }
+        
+        /* استایل بخش اطلاعات تماس */
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border-right: 3px solid #3498db;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+        
+        .contact-text {
+            color: #555;
+            text-align: right;
+        }
+        
+        /* ناوبری Swiper */
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.2rem;
+            color:#2c3e50;
+            font-weight: bold;
+        }
+        
+        .swiper-button-next {
+            left: 20px;
+            right: auto;
+        }
+        
+        .swiper-button-prev {
+            right: 20px;
+            left: auto;
+        }
+        
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: #3498db;
+            transform: scale(1.1);
+        }
+        
+        .swiper-button-next:hover::after,
+        .swiper-button-prev:hover::after {
+            color: white;
+        }
+        
+        /* Pagination */
+        .swiper-pagination {
+            bottom: 0 !important;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: #ccc;
+            opacity: 1;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background-color: #3498db;
+            transform: scale(1.2);
+        }
+        
+      
+      
+        
+        /* انیمیشن */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .swiper-slide {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header style="margin-top: 0px" class="header -mt-lg-3">
+      <div class="">
+        <div class="header-main">
+          <!-- Logo -->
+          <div class="logo ps-lg-5 ps-2">
+            <img src="./assets/images/logo.png" alt="لوگو" height="40" />
+          </div>
+          <div class="d-flex flex-column">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn d-lg-none pe-lg-5 pe-2">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-top d-lg-block d-none">
+              <div class="header-social">
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-telegram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-weixin"></i
+                ></a>
+              </div>
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav d-none d-lg-block">
+              <ul class="main-menu">
+                <li><a href="#">خانه</a></li>
+
+                <li class="menu-item-has-children">
+                  <a href="#">
+                    خدمات
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a href="#">نصب و راه‌اندازی</a></li>
+                    <li><a href="#">تعمیر و نگهداری</a></li>
+                    <li><a href="#">پشتیبانی فنی</a></li>
+                  </ul>
+                </li>
+
+                <li class="menu-item-has-children">
+                  <a href="#">
+                    محصولات
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a href="#">درب اتوماتیک کشویی</a></li>
+                    <li><a href="#">درب اتوماتیک گردان</a></li>
+                    <li><a href="#">درب اتوماتیک بیمارستانی</a></li>
+                    <li><a href="#">درب اتوماتیک صنعتی</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="#">مجله</a></li>
+                <li><a href="#">پروژه‌ها</a></li>
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">تماس با ما</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-container">
+      <div class="mobile-menu-header">
+        <h5>منو</h5>
+        <button class="close-mobile-menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="mobile-menu">
+        <li><a href="#">خانه</a></li>
+
+        <li class="menu-item-has-children">
+          <a href="#">
+            خدمات
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="sub-menu">
+            <li><a href="#">نصب و راه‌اندازی</a></li>
+            <li><a href="#">تعمیر و نگهداری</a></li>
+            <li><a href="#">پشتیبانی فنی</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item-has-children">
+          <a href="#">
+            محصولات
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="sub-menu">
+            <li><a href="#">درب اتوماتیک کشویی</a></li>
+            <li><a href="#">درب اتوماتیک گردان</a></li>
+            <li><a href="#">درب اتوماتیک بیمارستانی</a></li>
+            <li><a href="#">درب اتوماتیک صنعتی</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#">مجله</a></li>
+        <li><a href="#">پروژه‌ها</a></li>
+        <li><a href="#">درباره ما</a></li>
+        <li><a href="#">تماس با ما</a></li>
+      </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section-about-us">
+      <div class="hero-content container">
+        <h1 class="hero-title fade-in-up">درباره ما</h1>
+        <p class="hero-subtitle fade-in-up">
+          ما با سال‌ها تجربه و تخصص، متخصص در طراحی، نصب و راه‌اندازی درب‌های
+          اتوماتیک هستیم. ماموریت ما ارائه راه‌حل‌های ایمن، هوشمند و باکیفیت
+          است.
+        </p>
+      </div>
+    </section>
+
+    <!-- history section -->
+    <section>
+      <div class="history-section container bg-white border d-flex flex-wrap">
+        <div class="col-md-6 col-12 p-3">
+          <div class="arrow-red mb-2"></div>
+          <span class="fw-bold fs-4">تاریخچه ما</span>
+          <div>
+            <p style="text-align: justify; font-size: 14px">
+              <span style="color: #e00" class="fw-bold fs-5"
+                >شرکت درب ماندگار</span
+              >
+              با 20 سال تجربه موفق و سابقه درخشان در طراحی، تولید، نصب و اجرای
+              انواع درب‌های اتوماتیک و راه‌بند در پروژه‌های معتبر ملی توانسته
+              جایگاه ویژه و درخشانی در این زمینه کسب کند.
+            </p>
+            <p style="text-align: justify; font-size: 14px">
+              <span style="color: #e00" class="fw-bold fs-5"
+                >گروه درب اتوماتیک ماندگار</span
+              >
+              دارای نمایندگی انحصاری و همکاری با شرکت‌های اروپایی مانند DITEC ,
+              ERREKA اسپانیا در زمینه تخصصی درب اتوماتیک شیشه‌ای، درب اتوماتیک
+              پارکینگ، درب اتوماتیک ریلی، درب‌های بیمارستانی و... می‌باشد که با
+              بهره‌گیری از پرسنل و مهندسین مجرب و آموزش دیده توانسته از
+              معتبرترین شرکت‌های فعال در این صنعت باشد.
+            </p>
+            <p style="text-align: justify; font-size: 14px">
+              <span style="color: #e00" class="fw-bold fs-5"
+                >گروه درب اتوماتیک ماندگار</span
+              >
+              علاوه بر داشتن نمایندگی انحصاری از شرکت‌های معتبر اروپایی، اقدام
+              به تولید بخش‌هایی از لوازم و ملزومات و قطعات درب‌های اتوماتیک نیز
+              نموده است. در واقع با توجه به حضور تیم فنی مهندسی توانمند در این
+              زمینه قطعات و لوازم یدکی موتورهای درب اتوماتیک را به راحتی طراحی و
+              تولید می‌نماید. خدمات پس از فروش منحصر به فرد و سرویس‌های دوره‌ای
+              از دیگر خدمات گروه صنعتی ماندگار است، که توسط کارشناسان مجرب این
+              شرکت در کوتاه ترین زمان ممکن به مشتریان عزیز ارائه می‌شود.
+            </p>
+            <p style="text-align: justify; font-size: 14px">
+              <span style="color: #e00" class="fw-bold fs-5">گروه ماندگار</span>
+              در سال 1399 تولید کننده اولین برند ایرانی درب اتوماتیک شد و
+              محصولات خود را با برند درب اتوماتیک MIG تولید و توزیع کرد. شرکت
+              درب اتوماتیک ماندگار با توجه به توانایی تیم مهندسی خود توان تحویل
+              48 ساعته اپراتور لابل ایتالیا را برای همکاران عزیز دارد. .
+            </p>
+            <p style="text-align: justify; font-size: 14px">
+              <span style="color: #e00" class="fw-bold fs-5">گروه ماندگار</span>
+              با سابقه ای درخشان در زمینه اجرا و نصب انواع درب اتوماتیک از جمله
+              درب اتوماتیک شیشه‌ای، درب اتوماتیک پارکینگی، راهبند ها، درب های
+              محافظ سکو مترو آماده مشاوره و اجرای پروژه در تمامی شهر های ایران
+              می‌باشد. لذا در همین راستا از تمامی ارگان‌های دولتی و خصوصی دعوت
+              می‌نماییم تا در این امر ما را یاری نمایند و همه با هم برگ زرین
+              دیگری را در صنعت
+              <span style="color: #e00" class="fw-bold fs-5"
+                >کشور عزیزمان ایران</span
+              >
+              ورق بزنیم. .
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <section class="timeline-section">
+            <div class="container">
+              <div class="timeline">
+                <!-- آیتم های تایم لاین -->
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۸۵</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">تاسیس شرکت بازرگانی ماندگار</h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۰</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      دریافت نمایندگی انحصاری LABEL ایتالیا
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۱</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      نصب درب‌های اتوماتیک موسسات آموزش عالی مهر ایران
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۲</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">تاسیس هلدینگ گروه صنعتی ماندگار</h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۳</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      اخذ نمایندگی انحصاری کمپانی ERREKA اسپانیا
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۴</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      اجرای درب‌های اتوماتیک شعب بانک تجارت ایران
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۵</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      اجرای درب‌های اتوماتیک شعب بانک صادرات ایران
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۶</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      ایجاد واحد تحقیق و توسعه و مهندسی بازار
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۷</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      تاسیس نمایندگی استان‌های بوشهر، اردبیل، خوزستان
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۸</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      تاسیس نمایندگی استان‌های کرمان، آذربایجان غربی
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۳۹۹</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      طراحی و تولید اولین برند ایرانی درب‌های اتوماتیک (MTC)
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۴۰۰</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      عقد قرارداد با پتروشیمی‌های ایران
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-year">۱۴۰۱</div>
+                  <div class="timeline-content">
+                    <h4 class="event-title">
+                      تاسیس نمایندگی استان‌های مازندران، آذربایجان شرقی
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- perspective section -->
+    <section class="container">
+      <div class="perspective-section d-flex flex-wrap">
+        <div class="col-md-6 col-12 p-3">
+          <div class="d-flex flex-wrap">
+            <div class="col-4 p-2">
+              <img
+                style="width: 100%; height: 150px"
+                src="./assets/images/atocha.png"
+                alt=""
+              />
+            </div>
+            <div class="col-4 p-2">
+              <img
+                style="width: 100%; height: 150px"
+                src="./assets/images/atocha.png"
+                alt=""
+              />
+            </div>
+            <div class="col-4 p-2">
+              <img
+                style="width: 100%; height: 150px"
+                src="./assets/images/atocha.png"
+                alt=""
+              />
+            </div>
+            <div class="col-4 p-2">
+              <img
+                style="width: 100%; height: 150px"
+                src="./assets/images/atocha.png"
+                alt=""
+              />
+            </div>
+            <div class="col-4 p-2">
+              <img
+                style="width: 100%; height: 150px"
+                src="./assets/images/atocha.png"
+                alt=""
+              />
+            </div>
+            <div class="col-4 p-2">
+              <img
+                style="width: 100%; height: 150px"
+                src="./assets/images/atocha.png"
+                alt=""
+              />
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-md-6 col-12 p-3 d-flex flex-column justify-content-center" >
+          <div class="arrow-red mb-2"></div>
+          <span class="fw-bold fs-6">چشم‌انداز و ماموریت</span>
+          <p style="text-align: justify;" class="mt-3">
+            گروه درب‌های اتوماتیک ماندگار در تلاش است تا با حضور نیروهای متخصص و
+            آموزش دیده به ارتقاء محصولات و تولیدات خود بپردازد و باکیفیتی برتر
+            سهم قابل توجهی از بازر هدف را در ایران و جوامع بین‌الملل به دست
+            آورد.
+          </p>
+          <p style="text-align: justify;">
+            گروه درب‌های اتوماتیک ماندگار تمامی تلاش خود را به کار می‌گیرد تا
+            خدمات خود را که شامل تولید درب‌های اتوماتنیک، اجرا و نصب ، طراحی و
+            ساخت ،سرویس دیزاین و تعویض و تعمیر قطعات می‌شود، در بهترین کیفیت
+            ممکن به بازار هدف و کارفرمایان عزیز ارائه دهد.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+     <section class="team-slider-section">
+        <div style="overflow: hidden !important; max-width: 600px;" class="container mx-auto">
+           
+            
+            <div class="swiper-container">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- اسلاید ۱ -->
+                        <div class="swiper-slide">
+                           <img style="object-fit: contain;" class="w-100" src="./assets/images/ERREKAنامه نمایندگی-.png" alt="">
+                        </div>
+                        
+                        <!-- اسلاید ۲ -->
+                         <div class="swiper-slide">
+                           <img style="object-fit: contain;" class="w-100" src="./assets/images/ERREKAنامه نمایندگی-.png" alt="">
+                        </div>
+                        <!-- اسلاید ۳ -->
+                        <div class="swiper-slide">
+                           <img style="object-fit: contain;" class="w-100" src="./assets/images/ERREKAنامه نمایندگی-.png" alt="">
+                        </div>
+                        
+                        <!-- اسلاید ۴ -->
+                         <div class="swiper-slide">
+                           <img style="object-fit: contain;" class="w-100" src="./assets/images/ERREKAنامه نمایندگی-.png" alt="">
+                        </div>
+                        
+                        <!-- اسلاید ۵ -->
+                         <div class="swiper-slide">
+                           <img style="object-fit: contain;" class="w-100" src="./assets/images/ERREKAنامه نمایندگی-.png" alt="">
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div style="background-color: #020202;" class="d-flex justify-content-around text-white">
+            <div></div>
+            <div>
+                <span>ارسال رزومه</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div
+        class="footer d-flex flex-wrap justify-content-center gap-5 position-relative"
+      >
+        <div style="width: 400px" class="position-relative">
+          <div class="py-4 px-5 box-logo-footer">
+            <img
+              style="width: 150px"
+              src="./assets/images/logo-footer.png"
+              alt=""
+            />
+            <div
+              class="d-flex flex-column mt-4 align-items-start justify-content-center gap-2"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="#e00"
+                  class="bi bi-telephone"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
+                  />
+                </svg>
+                <span>02122113110</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="#e00"
+                  class="bi bi-envelope"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                  />
+                </svg>
+                <span>mandegardoor</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="35"
+                  fill="#e00"
+                  class="bi bi-geo-alt"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"
+                  />
+                  <path
+                    d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+                  />
+                </svg>
+                <span style="font-size: 14px"
+                  >بلوار ميرداماد، ميدان مادر، ابتداي خيابان سنجابي (بهروز)،
+                  پلاك3 ساختمان مادر واحد 4</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-5">
+          <div class="d-flex gap-5 flex-wrap">
+            <div>
+              <h6 class="fw-bold">لینک‌های مفید</h6>
+              <div
+                style="width: 40px; background: #e00; height: 3px"
+                class="mt-3"
+              ></div>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>درباره‌ما</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>خدمات‌ما</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>پروژه</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>محصولات</span>
+              </a>
+            </div>
+            <div>
+              <h6 class="fw-bold">تماس با ما</h6>
+              <div
+                style="width: 40px; background: #e00; height: 3px"
+                class="mt-3"
+              ></div>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>شبکه‌های اجتماعی</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>نمایندگی</span>
+              </a>
+              <a
+                href="#"
+                class="d-flex gap-2 align-items-center link-footer mt-2"
+              >
+                <span>></span>
+                <span>نقشه سایت</span>
+              </a>
+            </div>
+          </div>
+          <div
+            style="left: 0; right: 0; bottom: 10px"
+            class="position-absolute"
+          >
+            <div class="d-flex gap-2 flex-row-reverse px-2">
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M349.33 69.33a93.62 93.62 0 0 1 93.34 93.34v186.66a93.62 93.62 0 0 1-93.34 93.34H162.67a93.62 93.62 0 0 1-93.34-93.34V162.67a93.62 93.62 0 0 1 93.34-93.34h186.66m0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32z"
+                  ></path>
+                  <path
+                    d="M377.33 162.67a28 28 0 1 1 28-28 27.94 27.94 0 0 1-28 28zM256 181.33A74.67 74.67 0 1 1 181.33 256 74.75 74.75 0 0 1 256 181.33m0-37.33a112 112 0 1 0 112 112 112 112 0 0 0-112-112z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  t="1569683925316"
+                  viewBox="0 0 1024 1024"
+                  version="1.1"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M713.5 599.9c-10.9-5.6-65.2-32.2-75.3-35.8-10.1-3.8-17.5-5.6-24.8 5.6-7.4 11.1-28.4 35.8-35 43.3-6.4 7.4-12.9 8.3-23.8 2.8-64.8-32.4-107.3-57.8-150-131.1-11.3-19.5 11.3-18.1 32.4-60.2 3.6-7.4 1.8-13.7-1-19.3-2.8-5.6-24.8-59.8-34-81.9-8.9-21.5-18.1-18.5-24.8-18.9-6.4-0.4-13.7-0.4-21.1-0.4-7.4 0-19.3 2.8-29.4 13.7-10.1 11.1-38.6 37.8-38.6 92s39.5 106.7 44.9 114.1c5.6 7.4 77.7 118.6 188.4 166.5 70 30.2 97.4 32.8 132.4 27.6 21.3-3.2 65.2-26.6 74.3-52.5 9.1-25.8 9.1-47.9 6.4-52.5-2.7-4.9-10.1-7.7-21-13z"
+                  ></path>
+                  <path
+                    d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3-41.3-41.3-89.5-73.8-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6 0.3-119.3 12.3-174.5 35.9-53.3 22.8-101.1 55.2-142 96.5-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9 0.3 69.4 16.9 138.3 48 199.9v152c0 25.4 20.6 46 46 46h152.1c61.6 31.1 130.5 47.7 199.9 48h2.1c59.9 0 118-11.6 172.7-34.3 53.5-22.3 101.6-54.3 142.8-95.2 41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5 0.3-60.9-11.5-120-34.8-175.6z m-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-0.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-0.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-0.6 99.6-39.7 192.9-110.1 262.7z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 448 512"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="d-flex justify-content-center align-items-center p-2 bg-danger social-media-footer-link"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  height="20px"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10"
+                  ></path>
+                  <path
+                    d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Swiper
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 2,
+                spaceBetween: 30,
+                loop: true,
+               
+                // pagination: {
+                //     el: ".swiper-pagination",
+                //     clickable: true,
+                // },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+        });
+    </script>
+  </body>
+</html>
