@@ -20,15 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuContainer.classList.remove('active');
         document.body.style.overflow = '';
         
-        // Close all submenus
-        const mobileSubmenus = document.querySelectorAll('.mobile-menu .sub-menu');
+        // Close all submenus using Bootstrap collapse
+        const mobileSubmenus = document.querySelectorAll('.mobile-menu .sub-menu.collapse.show');
         mobileSubmenus.forEach(submenu => {
-            submenu.classList.remove('active');
+            const bsCollapse = new bootstrap.Collapse(submenu, {
+                toggle: false
+            });
+            bsCollapse.hide();
         });
         
-        const mobileMenuItems = document.querySelectorAll('.mobile-menu .menu-item-has-children > a i');
-        mobileMenuItems.forEach(icon => {
-            icon.style.transform = 'rotate(0deg)';
+        // Reset all menu items
+        const mobileMenuItems = document.querySelectorAll('.mobile-menu .menu-item-has-children > a');
+        mobileMenuItems.forEach(item => {
+            item.classList.add('collapsed');
+            item.setAttribute('aria-expanded', 'false');
+            const icon = item.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'rotate(0deg)';
+            }
         });
     }
     
@@ -40,31 +49,36 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
     }
     
-    // Mobile Submenu Toggle
+    // Mobile Submenu Toggle - استفاده از Bootstrap Collapse
     const mobileMenuParents = document.querySelectorAll('.mobile-menu .menu-item-has-children > a');
     
     mobileMenuParents.forEach(parent => {
-        parent.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        // استفاده از رویدادهای Bootstrap collapse
+        const targetId = parent.getAttribute('data-bs-target');
+        if (targetId) {
+            const collapseElement = document.querySelector(targetId);
+            const icon = parent.querySelector('i');
             
-            const submenu = this.parentElement.querySelector('.sub-menu');
-            const icon = this.querySelector('i');
-            
-            // Close other submenus
-            mobileMenuParents.forEach(otherParent => {
-                if (otherParent !== this) {
-                    const otherSubmenu = otherParent.parentElement.querySelector('.sub-menu');
-                    const otherIcon = otherParent.querySelector('i');
-                    otherSubmenu.classList.remove('active');
-                    otherIcon.style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            // Toggle current submenu
-            submenu.classList.toggle('active');
-            icon.style.transform = submenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-        });
+            if (collapseElement) {
+                // رویداد show (وقتی منو باز می‌شود)
+                collapseElement.addEventListener('show.bs.collapse', function() {
+                    parent.classList.remove('collapsed');
+                    parent.setAttribute('aria-expanded', 'true');
+                    if (icon) {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+                
+                // رویداد hide (وقتی منو بسته می‌شود)
+                collapseElement.addEventListener('hide.bs.collapse', function() {
+                    parent.classList.add('collapsed');
+                    parent.setAttribute('aria-expanded', 'false');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+        }
     });
     
     // Desktop Menu Hover Effect

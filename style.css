@@ -301,18 +301,27 @@ ul {
 
 
 .mobile-menu .sub-menu {
-  max-height: 0;
-  overflow: hidden;
+  position: static;        /* در موبایل مثل آکاردئون عمودی باشد، نه منوی شناور */
+  top: auto;
+  right: auto;
   background: #f8f9fa;
-  transition: max-height 0.4s ease;
   padding-right: 0;
   margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
 }
 
-.mobile-menu .sub-menu.active {
-  display: block !important;
-  max-height: 500px;
+.mobile-menu .sub-menu.collapse {
+  transition: height 0.35s ease;
 }
+
+.mobile-menu .sub-menu.collapsing {
+  transition: height 0.35s ease;
+}
+
 .mobile-menu .sub-menu li {
   border-bottom: 1px solid #e9ecef;
 }
@@ -333,6 +342,21 @@ ul {
   background: #e9ecef;
   color: #e00;
   padding-right: 3rem;
+}
+
+/* مثلث بالای زیرمنو که برای دسکتاپ است را در موبایل مخفی کن */
+.mobile-menu .sub-menu:before {
+  display: none;
+}
+
+/* استایل برای آیکون chevron در منوی موبایل */
+.mobile-menu .menu-item-has-children > a i {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.mobile-menu .menu-item-has-children > a[aria-expanded="true"] i {
+  transform: rotate(180deg);
 }
 @keyframes slideDown {
   from {
