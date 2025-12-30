@@ -299,11 +299,7 @@ ul {
   font-weight: 500;
 }
 
-/* .mobile-menu .sub-menu {
-  display: none;
-  background: #f8f9fa;
-  padding: 0;
-} */
+
 .mobile-menu .sub-menu {
   max-height: 0;
   overflow: hidden;
